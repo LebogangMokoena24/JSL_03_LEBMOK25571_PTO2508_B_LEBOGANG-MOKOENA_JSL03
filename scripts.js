@@ -1,6 +1,8 @@
 // JSL03 - Console Based Task Manager
 
+// ===============================
 // Starter array
+// ===============================
 const initialTasks = [
   {
     id: 1,
@@ -23,60 +25,84 @@ const initialTasks = [
   },
 ];
 
-// Validation functions (reused from JSL02)
+// ===============================
+// Validation functions (from JSL02)
+// ===============================
 
 function getValidStatus(taskNumber) {
-    let status;
+  let status;
 
-    while (true) {
-        status = prompt(`Enter status for Task ${taskNumber} (todo, doing, done):`);
+  while (true) {
+    status = prompt(
+      `Enter status for Task ${taskNumber} (todo, doing, done):`
+    );
 
-        if (status === null) {
-            alert("Status is required!");
-            continue;
-        }
-
-        status = status.toLowerCase().trim();
-
-        if (status === "todo" || status === "doing" || status === "done") {
-            return status;
-        } else {
-            alert("Invalid status! Please enter 'todo', 'doing', or 'done'.");
-        }
+    if (status === null) {
+      alert("Status is required!");
+      continue;
     }
+
+    status = status.toLowerCase().trim();
+
+    if (status === "todo" || status === "doing" || status === "done") {
+      return status;
+    } else {
+      alert("Invalid status! Please enter 'todo', 'doing', or 'done'.");
+    }
+  }
 }
 
 function getValidInput(promptText) {
-    let input = prompt(promptText);
-    while (!input) {
-        alert("This field is required!");
-        input = prompt(promptText);
-    }
-    return input.trim();
+  let input = prompt(promptText);
+
+  while (!input) {
+    alert("This field is required!");
+    input = prompt(promptText);
+  }
+
+  return input.trim();
 }
+
 // ===============================
-// ADD ONE NEW TASK (Test Step)
+// Add up to 3 new tasks
 // ===============================
 
-// Get new task details from user
-let title = getValidInput("Enter title for new task:");
-let description = getValidInput("Enter description for new task:");
-let status = getValidStatus("New");
+const MAX_NEW_TASKS = 3;
 
-// Generate new ID (last ID + 1)
-let lastTask = initialTasks[initialTasks.length - 1];
-let newId = lastTask.id + 1;
+for (let i = 1; i <= MAX_NEW_TASKS; i++) {
+  const title = getValidInput(`Enter title for Task ${i}:`);
+  const description = getValidInput(`Enter description for Task ${i}:`);
+  const status = getValidStatus(i);
 
-// Create task object
-const newTask = {
-  id: newId,
-  title: title,
-  description: description,
-  status: status,
-};
+  const lastTask = initialTasks[initialTasks.length - 1];
+  const newId = lastTask.id + 1;
 
-// Add to array
-initialTasks.push(newTask);
+  const newTask = {
+    id: newId,
+    title: title,
+    description: description,
+    status: status,
+  };
 
-// Log updated array
+  initialTasks.push(newTask);
+}
+
+// Alert when task limit is reached
+alert(
+  "There are enough tasks on your board, please check them in the console."
+);
+
+// ===============================
+// Filter completed tasks
+// ===============================
+
+function getCompletedTasks(tasks) {
+  return tasks.filter(task => task.status === "done");
+}
+
+// ===============================
+// Console output
+// ===============================
+
 console.log("All Tasks:", initialTasks);
+console.log("Completed Tasks:", getCompletedTasks(initialTasks));
