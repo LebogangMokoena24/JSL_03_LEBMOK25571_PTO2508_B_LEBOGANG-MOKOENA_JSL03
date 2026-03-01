@@ -54,3 +54,29 @@ function getValidInput(promptText) {
     }
     return input.trim();
 }
+// ===============================
+// ADD ONE NEW TASK (Test Step)
+// ===============================
+
+// Get new task details from user
+let title = getValidInput("Enter title for new task:");
+let description = getValidInput("Enter description for new task:");
+let status = getValidStatus("New");
+
+// Generate new ID (last ID + 1)
+let lastTask = initialTasks[initialTasks.length - 1];
+let newId = lastTask.id + 1;
+
+// Create task object
+const newTask = {
+  id: newId,
+  title: title,
+  description: description,
+  status: status,
+};
+
+// Add to array
+initialTasks.push(newTask);
+
+// Log updated array
+console.log("All Tasks:", initialTasks);
