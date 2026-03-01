@@ -59,9 +59,17 @@ The focus of this project is array manipulation, object creation, validation log
 ---
 
 ## 📎 Example Console Output
+All Tasks:
+┌─────┬────┬───────────────────────────┬───────────────────────────────┬───────┐
+│ id  │ …  │ title                     │ description                   │ …     │
+└─────┴────┴───────────────────────────┴───────────────────────────────┴───────┘
 
+Completed Tasks:
+┌─────┬────┬────────────────────────────┬───────────────────────────────┬───────┐
+│ id  │ …  │ title                      │ description                   │ …     │
+└─────┴────┴────────────────────────────┴───────────────────────────────┴───────┘
 ---
 
 ## 👩‍💻 Author
 
-Created as part of the JSL03 project challenge.
+Created by Lebogang Mokaoena as part of the JSL03 project challenge.
